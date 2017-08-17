@@ -1,0 +1,55 @@
+﻿
+
+@model IEnumerable<ReactExample.Models.CommentModel>
+
+@{
+    Layout = null;
+}
+
+<html>
+    <head>
+        <title>React Example</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+        <script src="@Url.Content("~/Scripts/Tutorial.jsx")"></script>
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+        <link href="~/Content/site.css" rel="stylesheet" />
+    </head>
+
+<body>
+
+
+
+    
+    <div class="container">
+        <div class="row form-group">
+            <p>
+                <div class="col-xs-12 col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2">
+
+
+                    @Html.React("CommentBox", new
+                {
+                    initialData = Model,
+                    url = Url.Action("Comments"),
+                    submitUrl = Url.Action("AddComment"),
+                    pollInterval = 2000,
+                })
+
+                    <div id="content"></div>
+
+                    @Html.ReactInitJavaScript()
+
+
+                </div>
+            </p>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
